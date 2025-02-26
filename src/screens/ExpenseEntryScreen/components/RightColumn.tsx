@@ -1,13 +1,20 @@
 import React from 'react';
-import { Expense } from './index';
+import { Expense } from '../../../models/Expense';
 
+/**
+ * Props for the RightColumn component
+ */
 interface RightColumnProps {
   expenses: Expense[];
   totalExpenses: number;
   averageExpense: number;
 }
 
-const RightColumn: React.FC<RightColumnProps> = ({ expenses, totalExpenses, averageExpense }) => {
+/**
+ * Displays financial analytics and expense history
+ * Pure presentation component with no business logic
+ */
+const RightColumn = ({ expenses, totalExpenses, averageExpense }: RightColumnProps) => {
   return (
     <section className="w-full md:w-1/2 bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-lg">
       <h2 className="text-2xl font-bold mb-4">Financial Analytics</h2>
