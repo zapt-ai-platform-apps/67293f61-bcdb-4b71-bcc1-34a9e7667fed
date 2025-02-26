@@ -1,18 +1,19 @@
 import React from 'react';
+import { CardConnectionSection, ExpenseForm } from './LeftColumn';
 
-interface LeftColumnProps {
+export interface LeftColumnProps {
   description: string;
   setDescription: (value: string) => void;
   amount: string;
   setAmount: (value: string) => void;
   isSubmitting: boolean;
-  handleAddExpense: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  handleAddExpense: (e: React.FormEvent) => void;
   isConnectingCard: boolean;
   isCardConnected: boolean;
   handleConnectCard: () => void;
 }
 
-const LeftColumn = ({
+function LeftColumn({
   description,
   setDescription,
   amount,
@@ -22,41 +23,24 @@ const LeftColumn = ({
   isConnectingCard,
   isCardConnected,
   handleConnectCard
-}: LeftColumnProps) => {
+}: LeftColumnProps) {
   return (
-    <div className="flex-1 flex flex-col items-start">
-      <form onSubmit={handleAddExpense} className="w-full space-y-4">
-        <input
-          type="text"
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="w-full p-2 rounded text-black"
-        />
-        <input
-          type="text"
-          placeholder="Amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          className="w-full p-2 rounded text-black"
-        />
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full py-2 px-4 bg-blue-600 rounded hover:bg-blue-700"
-        >
-          Add Expense
-        </button>
-      </form>
-      <button
-        onClick={handleConnectCard}
-        disabled={isConnectingCard || isCardConnected}
-        className="mt-4 w-full py-2 px-4 bg-green-600 rounded hover:bg-green-700"
-      >
-        {isCardConnected ? 'Card Connected' : 'Connect Card'}
-      </button>
+    <div className="w-full md:w-1/2 flex flex-col gap-8">
+      <CardConnectionSection 
+        isConnectingCard={isConnectingCard}
+        isCardConnected={isCardConnected}
+        handleConnectCard={handleConnectCard}
+      />
+      <ExpenseForm 
+        description={description}
+        setDescription={setDescription}
+        amount={amount}
+        setAmount={setAmount}
+        isSubmitting={isSubmitting}
+        handleAddExpense={handleAddExpense}
+      />
     </div>
   );
-};
+}
 
 export default LeftColumn;
