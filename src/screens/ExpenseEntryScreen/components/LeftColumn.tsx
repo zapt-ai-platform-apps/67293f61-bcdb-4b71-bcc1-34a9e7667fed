@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardConnectionSection, ExpenseForm } from './LeftColumn';
+import { CardConnectionSection, ExpenseForm } from './LeftColumn/index';
 
 export interface LeftColumnProps {
   description: string;
@@ -7,7 +7,7 @@ export interface LeftColumnProps {
   amount: string;
   setAmount: (value: string) => void;
   isSubmitting: boolean;
-  handleAddExpense: (e: React.FormEvent) => void;
+  handleAddExpense: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   isConnectingCard: boolean;
   isCardConnected: boolean;
   handleConnectCard: () => void;
