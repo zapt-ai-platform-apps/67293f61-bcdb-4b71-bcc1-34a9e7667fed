@@ -6,7 +6,7 @@ interface ExpenseFormProps {
   amount: string;
   setAmount: (value: string) => void;
   isSubmitting: boolean;
-  handleAddExpense: (e: React.FormEvent) => void;
+  handleAddExpense: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 }
 
 const ExpenseForm = ({
